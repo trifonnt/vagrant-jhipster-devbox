@@ -31,7 +31,7 @@ apt-get install ntp
 apt-get -y install openjdk-11-jdk
 
 # install Node.js
-wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.gz -O /tmp/node.tar.gz
+wget https://nodejs.org/dist/v16.14.0/node-v16.14.0-linux-x64.tar.gz -O /tmp/node.tar.gz
 tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
 
 # update NPM
@@ -45,7 +45,7 @@ su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 npm install -g yo
 
 # install JHipster
-npm install -g generator-jhipster@6.9.1
+npm install -g generator-jhipster@7.8.1
 
 # install JHipster UML
 npm install -g jhipster-uml@2.0.3
@@ -74,7 +74,7 @@ apt-get remove -y light-locker --purge
 
 # change the default wallpaper
 #wget https://jhipster.github.io/images/wallpaper-004-2560x1440.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
-wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/master/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
+wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/main/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
 sed -i -e 's/xubuntu-wallpaper.png/jhipster-wallpaper.png/' /etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 ################################################################################
