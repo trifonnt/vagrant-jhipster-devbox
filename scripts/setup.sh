@@ -146,17 +146,18 @@ snap ack pycharm-community_240.assert
 snap install pycharm-community_240.snap --classic
 
 # @Trifon - Install Eclipse STS IDE
-wget https://download.springsource.com/release/STS4/4.6.2.RELEASE/dist/e4.15/spring-tool-suite-4-4.6.2.RELEASE-e4.15.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz
+wget https://download.springsource.com/release/STS4/4.17.1.RELEASE/dist/e4.26/spring-tool-suite-4-4.17.1.RELEASE-e4.26.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.17.1.tar.gz
+#wget https://download.springsource.com/release/STS4/4.6.2.RELEASE/dist/e4.15/spring-tool-suite-4-4.6.2.RELEASE-e4.15.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz
 mkdir /home/vagrant/.local/share/umake/ide/spring-sts
-mkdir /home/vagrant/.local/share/umake/ide/spring-sts/4.6.2
-tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts/4.6.2 --strip-components=1
+mkdir /home/vagrant/.local/share/umake/ide/spring-sts/4.17.1
+tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-4.17.1.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts/4.17.1 --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Name=Spring STS-4.6.2" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/4.6.2/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/4.6.2/SpringToolSuite4\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Name=Spring STS-4.17.1" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/4.17.1/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/4.17.1/SpringToolSuite4\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
