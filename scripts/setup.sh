@@ -31,7 +31,7 @@ apt-get install ntp
 apt-get -y install openjdk-11-jdk
 
 # install Node.js
-wget https://nodejs.org/dist/v16.14.0/node-v16.14.0-linux-x64.tar.gz -O /tmp/node.tar.gz
+wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz -O /tmp/node.tar.gz
 tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
 
 # update NPM
@@ -45,7 +45,7 @@ su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 npm install -g yo
 
 # install JHipster
-npm install -g generator-jhipster@7.8.1
+npm install -g generator-jhipster@7.9.3
 
 # install JHipster UML
 npm install -g jhipster-uml@2.0.3
