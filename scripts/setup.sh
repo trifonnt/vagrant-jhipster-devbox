@@ -31,10 +31,12 @@ dpkg-reconfigure -f noninteractive tzdata
 apt-get install ntp
 
 # install Java 8
-#apt-get install openjdk-8-jdk
-
+#apt-get -y install openjdk-8-jdk
 # install Java 11
-apt-get -y install openjdk-11-jdk
+#apt-get -y install openjdk-11-jdk
+
+# install Java 17
+apt-get -y install openjdk-17-jdk
 
 # install Node.js
 wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz -O /tmp/node.tar.gz
