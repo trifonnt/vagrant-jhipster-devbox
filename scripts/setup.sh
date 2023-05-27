@@ -1,8 +1,11 @@
 #!/bin/sh
 
 # update the system
+export DEBIAN_FRONTEND=noninteractive
+apt-mark hold keyboard-configuration
 apt-get update
-apt-get upgrade
+apt-get -y upgrade
+apt-mark unhold keyboard-configuration
 
 ################################################################################
 # Install the mandatory tools
@@ -28,27 +31,30 @@ dpkg-reconfigure -f noninteractive tzdata
 apt-get install ntp
 
 # install Java 8
-apt-get install openjdk-8-jdk
+#apt-get install openjdk-8-jdk
 
-# install node.js
-curl -sL https://deb.nodesource.com/setup_8.x | bash -
-apt-get install -y nodejs unzip python g++ build-essential
+# install Java 11
+apt-get -y install openjdk-11-jdk
 
-# update npm
+# install Node.js
+wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz -O /tmp/node.tar.gz
+tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
+
+# update NPM
 npm install -g npm
 
-# install yarn
+# install Yarn
 npm install -g yarn
 su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 
-# install yeoman grunt bower gulp
-su -c "yarn global add yo" vagrant
+# install Yeoman
+npm install -g yo
 
 # install JHipster
-su -c "yarn global add generator-jhipster@5.1.0" vagrant
+npm install -g generator-jhipster@7.9.3
 
 # install JHipster UML
-su -c "yarn global add jhipster-uml@2.0.3" vagrant
+npm install -g jhipster-uml@2.0.3
 
 ################################################################################
 # Install the graphical environment
@@ -66,12 +72,15 @@ echo 'allowed_users=anybody' > /etc/X11/Xwrapper.config
 # install Ubuntu desktop and VirtualBox guest tools
 apt-get install -y xubuntu-desktop virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 
+# @Trifon - https://techpiezo.com/linux/switch-display-manager-in-ubuntu-20-04/
+apt install -y lightdm
+
 # remove light-locker (see https://github.com/jhipster/jhipster-devbox/issues/54)
 apt-get remove -y light-locker --purge
 
 # change the default wallpaper
 #wget https://jhipster.github.io/images/wallpaper-004-2560x1440.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
-wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/master/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
+wget https://raw.githubusercontent.com/jhipster/jhipster-devbox/main/images/jhipster-wallpaper.png -O /usr/share/xfce4/backdrops/jhipster-wallpaper.png
 sed -i -e 's/xubuntu-wallpaper.png/jhipster-wallpaper.png/' /etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 ################################################################################
@@ -128,20 +137,26 @@ sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagr
 # disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
 sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
+# @Trifon
 # install IDEA community edition
-su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
+#su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
+
+# @Trifon - Sublime Editor
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
+apt install sublime-text
 
 # @Trifon - Install Eclipse DSL IDE
-wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/photon/R/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz
-mkdir -p /home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0
-tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0 --strip-components=1
+# wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/photon/R/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-03/R/eclipse-dsl-2023-03-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-03-R-linux-gtk-x86_64.tar.gz
+mkdir -p  /home/vagrant/.local/share/umake/ide/eclipse-dsl/
+tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-03-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Name=Eclipse DSL-4.8.0" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Name=Eclipse DSL-2023-03-R" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Comment=Eclipse DSL IDE" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
@@ -155,7 +170,7 @@ sysctl -p --system
 curl -sL https://get.docker.io/ | sh
 
 # install latest docker-compose
-curl -L "$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | head -n 4 | grep Linux | grep -v sha256 | cut -d '"' -f 4)" > /usr/local/bin/docker-compose
+curl -L "$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep Linux | grep -v sha256 | head -n 1 | cut -d '"' -f 4)" > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # configure docker group (docker commands can be launched without sudo)
