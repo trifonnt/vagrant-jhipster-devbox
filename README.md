@@ -59,7 +59,7 @@ You can then tune your installation, by following the next sections on customizi
 
 This generates a new "development box" directly from this repository.
 
-- Clone this repository: `git clone --branch eclipse-dsl https://github.com/trifonnt/vagrant-jhipster-devbox.git trifonnt-jhipster-devbox-eclipse-dsl-4.8.0`
+- Clone this repository: `git clone --branch eclipse-dsl-2023-03-R https://github.com/trifonnt/vagrant-jhipster-devbox.git trifonnt-jhipster-devbox-eclipse-dsl-2023-03-R`
 - It is wise to use a tag to have a stable version: the JHipster DevBox tags are the same as the JHipster Generator tags, so using the DevBox v3.2.0 also means using the generator v3.2.0
 - Run `vagrant up`
 
