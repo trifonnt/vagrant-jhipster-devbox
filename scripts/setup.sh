@@ -150,6 +150,7 @@ apt install sublime-text
 
 # @Trifon - Install Eclipse DSL IDE
 # wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/photon/R/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz
+mkdir -p  /home/vagrant/.local/share/umake/ide
 wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-06/R/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz
 mkdir -p  /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R
 tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R --strip-components=1
