@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "bento/ubuntu-22.04" # old: bento/ubuntu-20.04, ubuntu/bionic64, bento/ubuntu-18.10, bento/ubuntu-17.10
+    config.vm.box = "bento/ubuntu-20.04" # old: bento/ubuntu-20.04, ubuntu/bionic64, bento/ubuntu-18.10, bento/ubuntu-17.10
     config.vm.hostname = "jhipster-devbox-eclipse-dsl-2023-06-R"
+    config.disksize.size = "64GB"
     config.vm.provision :shell, :path => "scripts/setup.sh"
     config.vm.network :forwarded_port, host: 8080, guest: 8080
     config.vm.network :forwarded_port, host: 9000, guest: 9000
