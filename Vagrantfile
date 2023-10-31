@@ -1,4 +1,5 @@
 Vagrant.configure("2") do |config|
+    config.vm.disk :disk, size: "64GB", primary: true
     config.vm.box = "bento/ubuntu-20.04" # old: bento/ubuntu-20.04, ubuntu/bionic64, bento/ubuntu-18.10, bento/ubuntu-17.10
     config.vm.hostname = "jhipster-devbox-eclipse-dsl-2023-06-R"
     config.vm.provision :shell, :path => "scripts/setup.sh"
@@ -10,7 +11,6 @@ Vagrant.configure("2") do |config|
     config.vm.provider :virtualbox do |vb|
         # Display the VirtualBox GUI when booting the machine
         vb.gui = true
-        vb.disksize.size = "64GB"
 
         # Set the VirtualBox VM name equal to the hostname
         # vb.name = config.vm.hostname.to_s
