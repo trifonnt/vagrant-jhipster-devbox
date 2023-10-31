@@ -131,13 +131,13 @@ echo 'export PATH="$PATH:/usr/bin:/home/vagrant/.yarn-global/bin:/home/vagrant/.
 chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
 
 # install Visual Studio Code
-su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
+#su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
 
 # fix links (see https://github.com/ubuntu/ubuntu-make/issues/343)
-sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
+#sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
 
 # disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
-sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
+#sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
 # @Trifon
 # install IDEA community edition
@@ -150,16 +150,16 @@ apt install sublime-text
 
 # @Trifon - Install Eclipse DSL IDE
 # wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/photon/R/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz
-wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-03/R/eclipse-dsl-2023-03-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-03-R-linux-gtk-x86_64.tar.gz
-mkdir -p  /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R
-tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-03-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R --strip-components=1
+wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-06/R/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz
+mkdir -p  /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R
+tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Name=Eclipse DSL-2023-03-R" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-03-R/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Name=Eclipse DSL-2023-06-R" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Comment=Eclipse DSL IDE" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
