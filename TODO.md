@@ -1,6 +1,7 @@
 !!! Another approach !!!
  - https://github.com/sprotheroe/vagrant-disksize
-$ agrant plugin install vagrant-disksize
+$ vagrant plugin install vagrant-disksize
+
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/xenial64'
   config.disksize.size = '50GB'

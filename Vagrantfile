@@ -1,6 +1,8 @@
 Vagrant.configure("2") do |config|
+    config.vm.disk :disk, size: "64GB", primary: true
+    config.disksize.size = '64GB' ## vagrant plugin install vagrant-disksize
     config.vm.box = "bento/ubuntu-20.04" # old: ubuntu/bionic64, bento/ubuntu-18.10
-    config.vm.hostname = "jhipster-devbox-7.9.3"
+    config.vm.hostname = "jhipster-devbox-7.9.3-idempiere-2"
     config.vm.provision :shell, :path => "scripts/setup.sh"
     config.vm.network :forwarded_port, host: 8080, guest: 8080
     config.vm.network :forwarded_port, host: 9000, guest: 9000
@@ -16,7 +18,7 @@ Vagrant.configure("2") do |config|
 
         # Use VBoxManage to customize the VM. For example to change memory:
         vb.customize ["modifyvm", :id, "--name", config.vm.hostname.to_s]
-        vb.customize ["modifyvm", :id, "--memory", "8192"]
+        vb.customize ["modifyvm", :id, "--memory", "16384"]
         vb.customize ["modifyvm", :id, "--vram", 128]
         vb.customize ["modifyvm", :id, "--cpus", 4]
         vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
