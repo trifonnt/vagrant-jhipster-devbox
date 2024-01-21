@@ -141,24 +141,37 @@ apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 apt install sublime-text
 
 # @Trifon - Install PyCharm
-snap download pycharm-community
-snap ack pycharm-community_240.assert
-snap install pycharm-community_240.snap --classic
+#snap download pycharm-community
+#snap ack pycharm-community_240.assert
+#snap install pycharm-community_240.snap --classic
+
+# @Trifon - Install Apazhe Maven
+wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz -O /opt/apache-maven-3.9.6-bin.tar.gz
+mkdir /opt/maven
+mkdir /opt/maven/3.9.6
+tar -zxvf /opt/apache-maven-3.9.6-bin.tar.gz -C /opt/maven/3.9.6 --strip-components=1
+echo "#" >> /home/vagrant/.profile
+echo "# - Maven" >> /home/vagrant/.profile
+echo "M2_HOME='/opt/maven/3.9.6'" >> /home/vagrant/.profile
+echo "PATH=\"$M2_HOME/bin:$PATH\"" >> /home/vagrant/.profile
+echo "export PATH" >> /home/vagrant/.profile
+
 
 # @Trifon - Install Eclipse STS IDE
-wget https://download.springsource.com/release/STS4/4.19.0.RELEASE/dist/e4.28/spring-tool-suite-4-4.19.0.RELEASE-e4.28.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.19.0.tar.gz
+ wget https://download.springsource.com/release/STS4/4.21.0.RELEASE/dist/e4.30/spring-tool-suite-4-4.21.0.RELEASE-e4.30.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.21.0.tar.gz
+#wget https://download.springsource.com/release/STS4/4.19.0.RELEASE/dist/e4.28/spring-tool-suite-4-4.19.0.RELEASE-e4.28.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.19.0.tar.gz
 #wget https://download.springsource.com/release/STS4/4.17.1.RELEASE/dist/e4.26/spring-tool-suite-4-4.17.1.RELEASE-e4.26.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.17.1.tar.gz
 #wget https://download.springsource.com/release/STS4/4.6.2.RELEASE/dist/e4.15/spring-tool-suite-4-4.6.2.RELEASE-e4.15.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz
 mkdir /home/vagrant/.local/share/umake/ide/spring-sts
-mkdir /home/vagrant/.local/share/umake/ide/spring-sts/4.19.0
-tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-4.19.0.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts/4.19.0 --strip-components=1
+mkdir /home/vagrant/.local/share/umake/ide/spring-sts/4.21.0
+tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-4.21.0.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts/4.21.0 --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Name=Spring STS-4.19.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/4.19.0/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/4.19.0/SpringToolSuite4\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Name=Spring STS-4.21.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/4.21.0/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/4.21.0/SpringToolSuite4\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
