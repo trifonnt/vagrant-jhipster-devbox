@@ -53,7 +53,7 @@ su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 npm install -g yo
 
 # install JHipster
-npm install -g generator-jhipster@7.9.4
+npm install -g generator-jhipster@8.4.0
 
 # install JHipster UML
 npm install -g jhipster-uml@2.0.3
@@ -113,19 +113,19 @@ cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
 git clone git://github.com/trifonnt/vagrant-jhipster-devbox.git /home/vagrant/jhipster-devbox
 chmod +x /home/vagrant/jhipster-devbox/tools/*.sh
 
-# install zsh
-apt-get install -y zsh
+## install zsh
+#apt-get install -y zsh
 
-# install oh-my-zsh
-git clone git://github.com/robbyrussell/oh-my-zsh.git /home/vagrant/.oh-my-zsh
-cp /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template /home/vagrant/.zshrc
-chsh -s /bin/zsh vagrant
-echo 'SHELL=/bin/zsh' >> /etc/environment
+## install oh-my-zsh
+#git clone git://github.com/robbyrussell/oh-my-zsh.git /home/vagrant/.oh-my-zsh
+#cp /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template /home/vagrant/.zshrc
+#chsh -s /bin/zsh vagrant
+#echo 'SHELL=/bin/zsh' >> /etc/environment
 
-# install jhipster-oh-my-zsh-plugin
-git clone https://github.com/jhipster/jhipster-oh-my-zsh-plugin.git /home/vagrant/.oh-my-zsh/custom/plugins/jhipster
-sed -i -e "s/plugins=(git)/plugins=(git docker docker-compose jhipster)/g" /home/vagrant/.zshrc
-echo 'export PATH="$PATH:/usr/bin:/home/vagrant/.yarn-global/bin:/home/vagrant/.yarn/bin:/home/vagrant/.config/yarn/global/node_modules/.bin"' >> /home/vagrant/.zshrc
+## install jhipster-oh-my-zsh-plugin
+#git clone https://github.com/jhipster/jhipster-oh-my-zsh-plugin.git /home/vagrant/.oh-my-zsh/custom/plugins/jhipster
+#sed -i -e "s/plugins=(git)/plugins=(git docker docker-compose jhipster)/g" /home/vagrant/.zshrc
+#echo 'export PATH="$PATH:/usr/bin:/home/vagrant/.yarn-global/bin:/home/vagrant/.yarn/bin:/home/vagrant/.config/yarn/global/node_modules/.bin"' >> /home/vagrant/.zshrc
 
 # change user to vagrant
 chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
@@ -151,16 +151,16 @@ apt install sublime-text
 # @Trifon - Install Eclipse DSL IDE
 # wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/photon/R/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz
 mkdir -p  /home/vagrant/.local/share/umake/ide
-wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-06/R/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz
-mkdir -p  /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R
-tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-06-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R --strip-components=1
+wget https://ftp.fau.de/eclipse/technology/epp/downloads/release/2023-12/R/eclipse-dsl-2023-12-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-12-R-linux-gtk-x86_64.tar.gz
+mkdir -p  /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-12-R
+tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-2023-12-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-12-R --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Name=Eclipse DSL-2023-06-R" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-06-R/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Name=Eclipse DSL-2023-12-R" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-12-R/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/2023-12-R/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Comment=Eclipse DSL IDE" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
