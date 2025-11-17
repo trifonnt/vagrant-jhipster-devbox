@@ -39,8 +39,13 @@ apt-get install ntp
 apt-get -y install openjdk-17-jdk
 
 # install Node.js
-wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz -O /tmp/node.tar.gz
-tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
+#wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz -O /tmp/node.tar.gz
+#tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
+# install Node.js using Node Version Manager
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc   # or ~/.zshrc
+nvm install 20
+nvm use 20
 
 # update NPM
 npm install -g npm
