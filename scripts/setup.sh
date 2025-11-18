@@ -21,7 +21,7 @@ dpkg-reconfigure locales
 apt-get -y install vim git zip bzip2 fontconfig curl language-pack-en
 
 # @Trifon - Additional utilities (MidnightCommander, wget)
-apt-get -y install mc wget
+apt-get -y install mc wget net-tools
 
 # @Trifon - Time zone(UTC+2)
 ln -fs /usr/share/zoneinfo/Europe/Sofia /etc/localtime
@@ -42,7 +42,7 @@ apt-get -y install openjdk-17-jdk
 #wget https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz -O /tmp/node.tar.gz
 #tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
 # install Node.js using Node Version Manager
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc   # or ~/.zshrc
 nvm install 20
 nvm use 20
