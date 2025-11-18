@@ -20,8 +20,8 @@ dpkg-reconfigure locales
 # install utilities
 apt-get -y install vim git zip bzip2 fontconfig curl language-pack-en
 
-# @Trifon - Additional utilities (MidnightCommander, wget)
-apt-get -y install mc wget net-tools
+# @Trifon - Additional utilities (MidnightCommander, wget, net-tools, ca-certificates)
+apt-get -y install mc wget net-tools ca-certificates
 
 # @Trifon - Time zone(UTC+2)
 ln -fs /usr/share/zoneinfo/Europe/Sofia /etc/localtime
@@ -176,14 +176,29 @@ echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/60-inotify.conf
 sysctl -p --system
 
 # install latest Docker
-curl -sL https://get.docker.io/ | sh
+apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+# Add the repository to Apt sources:
+rm /etc/apt/sources.list.d/docker.list
+tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 
-# install latest docker-compose
-curl -L "$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep Linux | grep -v sha256 | head -n 1 | cut -d '"' -f 4)" > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
+apt update
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 # configure docker group (docker commands can be launched without sudo)
-usermod -aG docker vagrant
+usermod -aG docker $USER
+
+#curl -sL https://get.docker.io/ | sh
+# install latest docker-compose
+#curl -L "$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep Linux | grep -v sha256 | head -n 1 | cut -d '"' -f 4)" > /usr/local/bin/docker-compose
+#chmod +x /usr/local/bin/docker-compose
 
 # fix ownership of home
 chown -R vagrant:vagrant /home/vagrant/
